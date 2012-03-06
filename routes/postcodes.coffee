@@ -34,7 +34,7 @@ exports.index = (req, res, next) ->
 
   statement =
     text: "SELECT
-            ST_AsGeoJSON(postcodes.geom) AS geom, postcodes.id
+            ST_AsGeoJSON(postcodes.geom) AS geom, postcodes.id, postcodes.postal_code
           FROM
             postcodes
           WHERE
@@ -54,6 +54,8 @@ exports.index = (req, res, next) ->
           type: "Feature"
           geometry: JSON.parse row.geom
           id: row.id
+          properties:
+            postalCode: row.postal_code
         }
 
       res.send featureCollection

@@ -21,7 +21,8 @@ var init = function init() {
     geojsonLayer.on('featureparse', function(feature){
       var html = [
         'OSM Id: <a href=\'http://openstreetmap.org/browse/relation/' + feature.id + '\'>' + feature.id + '</a>',
-        '<a target=\'_blank\' href=\'http://localhost:3000/api/postcodes/' + feature.id + '\'>download as GeoJSON</a>'
+        '<a target=\'_blank\' href=\'http://localhost:3000/api/postcodes/' + feature.id + '\'>download as GeoJSON</a>',
+        'Postal code: ' + feature.properties.postalCode
       ];
       feature.layer.bindPopup(html.join('<br>'));
     });
